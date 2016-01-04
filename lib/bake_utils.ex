@@ -26,7 +26,7 @@ defmodule BakeUtils do
   end
 
   def auth_info(config \\ BakeUtils.Cli.Config.read) do
-    Logger.debug "Config: #{inspect config}"
+    #Logger.debug "Config: #{inspect config}"
     if key = config[:key] do
       [key: key]
     else

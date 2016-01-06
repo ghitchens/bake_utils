@@ -48,12 +48,16 @@ defmodule BakeUtils do
 
   def host_arch do
     {arch, 0} = System.cmd("uname", ["-m"])
-    arch |> String.strip
+    arch
+    |> String.strip
+    |> String.downcase
   end
 
   def host_platform do
-    {arch, 0} = System.cmd("uname", ["-m"])
-    arch |> String.strip
+    {platform, 0} = System.cmd("uname", ["-s"])
+    platform
+    |> String.strip
+    |> String.downcase
   end
 
   defp platform(<<"Darwin", _tail :: binary>>) do

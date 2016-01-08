@@ -34,13 +34,13 @@ defmodule BakeUtils.Cli.Config do
     Path.join(BakeUtils.bake_home(), "bake.config")
   end
 
-  defp encode_term(list) do
+  def encode_term(list) do
     list
     |> Enum.map(&[:io_lib.print(&1) | ".\n"])
     |> IO.iodata_to_binary
   end
 
-  defp decode_term(string) do
+  def decode_term(string) do
     {:ok, pid} = StringIO.open(string)
     try do
       consult(pid, [])
@@ -57,7 +57,7 @@ defmodule BakeUtils.Cli.Config do
     end
   end
 
-  defp decode_elixir(string) do
+  def decode_elixir(string) do
     {term, _binding} = Code.eval_string(string)
     term
   end
